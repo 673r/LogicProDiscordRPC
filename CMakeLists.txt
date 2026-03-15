@@ -17,6 +17,11 @@ add_executable(LogicRPC MACOSX_BUNDLE
     config.cpp
 )
 
+set_target_properties(LogicRPC PROPERTIES
+    INSTALL_RPATH "@executable_path"
+    BUILD_WITH_INSTALL_RPATH TRUE
+)
+
 # macOS app bundle settings
 if(APPLE)
     set_target_properties(LogicRPC PROPERTIES
@@ -68,9 +73,11 @@ target_link_libraries(LogicRPC PRIVATE ${DISCORD_LIB_PATH})
 # ---- RPATH ----
 if(UNIX)
     set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
-    set(CMAKE_INSTALL_RPATH "$ORIGIN")
     if(APPLE)
         set(CMAKE_INSTALL_RPATH "@executable_path")
+        set(CMAKE_MACOSX_RPATH TRUE)
+    else()
+        set(CMAKE_INSTALL_RPATH "$ORIGIN")
     endif()
 endif()
 
