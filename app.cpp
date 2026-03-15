@@ -101,7 +101,6 @@ void logic_pro_loop(std::shared_ptr<discordpp::Client> client) {
                 }
             } else {
                 activity.SetState("Browsing projects");
-                activity.SetDetails("Logic Pro");
             }
 
             // Add assets for better RPC display
@@ -317,6 +316,6 @@ int app_main() {
 
     std::cout << "👋 Shutting down...\n";
     config::save();
-    if (logic_thread.joinable()) logic_thread.join();
+    // Do not join logic_thread here — engine::stop() already joins it. Double-join causes SIGABRT on quit.
     return 0;
 }
