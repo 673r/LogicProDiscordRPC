@@ -91,9 +91,7 @@ Done! Your Logic Pro activity now appears on your Discord profile.
 
 **Option B: Terminal**
 ```bash
-cd ~/Downloads
-unzip LogicRPC-v2.0.zip
-mv LogicRPC.app /Applications/
+brew install --cask 673r/tap/logicprodiscordrpc
 ```
 
 ### First Launch
